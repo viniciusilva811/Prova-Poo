@@ -1,0 +1,54 @@
+﻿@model Prova_Poo.Model.serie
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+
+    <h3>Detalhes da Série</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temporada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temporada)
+        </dd>
+
+    </dl>
+</div>
+<p>
+
+
+    <a href="@Url.Action("Edit", new { id = Model.Id})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-default" })
+
+
+</p>
+
+
+<hr />
+
+<div>
+    <p>
+
+        @Html.Action("IndexEpisodio", "Serie", new { id = Model.Id })
+    </p>
+</div>
+
+
+
+

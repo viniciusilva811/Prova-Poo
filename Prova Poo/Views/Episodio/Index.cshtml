@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Prova_Poo.Model.episodio>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Episodios</h2>
+
+<p>
+    <a href=" @Url.Action("Create")" class="btn btn-primary"> <span class="glyphicon glyphicon-plus glyphicon-btn"></span>Adicionar Novo</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroEpisodio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Avaliacao)
+        </th>
+        <th>
+            @Html.DisplayName("Nome Série")
+        </th>
+        <th>
+            @Html.DisplayName("Temporada")
+        </th>
+
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroEpisodio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Avaliacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.serie.Nome)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.serie.Temporada)
+        </td>
+        <td class="col-cmd">
+            <a href="@Url.Action("Edit", new { id = item.Id})" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="@Url.Action("Details", new { id = item.Id})" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list"></span></a>
+            <a href="@Url.Action("Delete", new { id = item.Id})" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
+    </tr>
+}
+
+</table>

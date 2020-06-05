@@ -1,0 +1,130 @@
+﻿@model Prova_Poo.Model.serie
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Deseja deletar O episodio @Model.Nome?</h3>
+<div>
+    <h4>serie</h4>
+    <hr />
+
+
+   
+
+    <dl class="dl-horizontal" id="form">
+
+        
+            @Html.HiddenFor( model=> model.Id, new { @class = "form-control", id = "idserie", @readonly = "readonly", @style = "text-align:center" } )
+
+        
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-default" })
+                <button id="btnDelete" type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button>
+            </div>
+        </div>
+
+
+    }
+</div>
+
+
+
+@section Scripts {
+    
+
+    <script>
+
+
+
+        $("#btnDelete").click(function (e) {
+
+           
+            var idSerie = $("#idserie").val();
+
+         
+            $(function () {
+                $.ajax({
+                    dataType: "json",
+                    type: "GET",
+                    data: { idSerie: idSerie }, 
+                    url: "/Serie/GetDados",
+
+                    success: function (dados) {
+                        
+
+                        if (dados != "") {
+
+
+                            alert(dados)
+
+                            var targetUrl = "/Serie/Index/";
+                            window.location.href = targetUrl;
+
+
+                        }
+                        else {
+
+
+                            var targetUrl = "/Serie/Index/";
+                            window.location.href = targetUrl;
+                        
+                           
+                        }
+
+
+
+
+                    },
+                    error: function () {
+                        alert("ERRO");
+                    }
+
+                });
+            });
+
+        
+         
+
+            //document.getElementById("btnDelete").submit();
+
+
+
+        });
+
+
+
+    </script>
+
+
+
+
+    }
+
+
+
+
+
+
